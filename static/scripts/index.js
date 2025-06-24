@@ -49,28 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         viewTask.style.display = 'none';
     });
 
-    saveButton.addEventListener('click', () => {
-        const taskInput = document.getElementById('task-input');
-        const taskDescription = document.getElementById('description');
-
-        if (!taskInput.value.trim() || !taskDescription.value.trim()) {
-            return;
-        }
-        taskArray.push({
-            taskText: taskInput.value.trim(),
-            description: taskDescription.value.trim(),
-            completed: false,
-        });
-        save();
-        createTask();
-        taskInput.value = '';
-        taskDescription.value = '';
-    });
-
-    cancelBtn.addEventListener('click', () => {
-        viewTask.style.display = 'none';
-    });
-
     function createTask(filteredTask = taskArray) {
         const taskList = document.querySelector('.task-list');
         taskList.innerHTML = '';
@@ -79,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             task.className = 'task';
             task.innerHTML = `
                 <input type="checkbox" id="checkbox-${index}">
-                <p>${tasks.description}</p>
+                <p>${tasks.todo}</p>
                 <div class="task-buttons">
                     <button id="delete-btn">
                         Delete
@@ -96,7 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const checkbox = task.querySelector(`#checkbox-${index}`);
-            checkbox.checked = tasks.completed;
+            checkbox.checked = tasks.completed || false;
+            if (checkbox.checked){
+                task.querySelector('p').style.textDecoration = 'line-through';
+            }
             checkbox.addEventListener('change', (e) => {
                 taskArray[index].completed = e.target.checked;
                 if (e.target.checked) {
@@ -110,7 +91,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    saveButton.addEventListener('click', () => {
+        const taskInput = document.getElementById('task-input');
+        const taskDescription = document.getElementById('description');
+        if (!taskInput.value.trim() || !taskDescription.value.trim()) {
+            return;
+        }
+        save();
+        createTask();
+        taskInput.value = '';
+        taskDescription.value = '';
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        viewTask.style.display = 'none';
+    });
+
     function save() {
         localStorage.setItem('tasks', JSON.stringify(taskArray));
     }
+
+    async function getTodo(){
+        const response = await fetch('https://dummyjson.com/todos');
+        const data = await response.json();
+        taskArray = data.todos
+        //console.log(taskArray);
+        createTask(taskArray);
+    }
+    getTodo();
 });
