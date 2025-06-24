@@ -1,0 +1,8 @@
+*.env
+.vscode
+*.fig
+*.xd
+
+.DS_Store
+.prettierignore
+

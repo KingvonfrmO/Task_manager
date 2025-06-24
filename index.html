@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/styles/index.css" />
+    <link rel="stylesheet" href="static/styles/task-view.css" />
+    <title>Task Manager</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <img src="static/images/Logo.svg" alt="logo" />
+        <h1>My Task Board</h1>
+        <img src="static/images/Edit_duotone.svg" alt="edit" />
+      </div>
+
+      <p>Tasks to keep Organized</p>
+      <div class="task-container">
+        <div class="in-progress">
+          <img src="static/images/3d-alarm.png" alt="clock" />
+          <p>Task in Progress</p>
+          <img src="static/images/right-arrow-outline.png" alt="left-arrow" />
+        </div>
+
+        <div class="completed-task">
+          <img src="static/images/weightlifting.png" alt="clock" />
+          <p>Task Completed</p>
+          <img src="static/images/right-arrow-outline.png" alt="left-arrow" />
+        </div>
+
+        <div class="all-tasks">
+          <img src="static/images/stack-of-books.png" alt="clock" />
+          <p>All Tasks</p>
+          <img src="static/images/right-arrow-outline.png" alt="left-arrow" />
+        </div>
+
+        <div class="add-task">
+          <img src="static/images/plus.png" alt="left-arrow" />
+          <p>Add new task</p>
+          <img src="static/images/right-arrow-outline.png" alt="left-arrow" />
+        </div>
+      </div>
+
+      <div class="view-tasks-container">
+        <div class="view-tasks">
+          <div class="section-header">
+            <h1>Task Details</h1>
+            <img
+              src="static/images/close_ring_duotone-1.svg"
+              alt="close-icon"
+              class="closeTaskView"
+            />
+          </div>
+
+          <div class="task-form">
+            <div class="task-name-group">
+              <label for="task-input">Task name</label>
+              <input type="text" id="task-input" />
+            </div>
+
+            <div class="task-description-group">
+              <label for="description">Description</label>
+              <textarea
+                name="description"
+                id="description"
+                placeholder="Enter a short description"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="icons">
+            <div class="pending">
+              <img src="static/images/3d-alarm.png" alt="alarm" />
+              <p>Pending Tasks</p>
+            </div>
+            <div class="all">
+              <img src="static/images/stack-of-books.png" alt="books" />
+              <p>All tasks</p>
+            </div>
+            <div class="complete">
+              <img src="static/images/weightlifting.png" alt="weightlifting" />
+              <p>completed tasks</p>
+            </div>
+          </div>
+          <div class="task-list"></div>
+          <div class="buttons">
+            <button id="save-task">Save</button>
+            <button id="cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="static/scripts/index.js"></script>
+  </body>
+</html>
